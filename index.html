@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>¡Cumple de Ángela Sarai!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      color: #333;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: #fff8ffdd;
+      border-radius: 25px;
+      box-shadow: 0 12px 35px rgba(255, 105, 180, 0.3);
+      max-width: 800px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 3.8rem;
+      color: #d81b60;
+      margin-bottom: 5px;
+      user-select: none;
+      text-shadow: 1px 1px 3px #ffa6c9;
+    }
+
+    h2 {
+      font-weight: 600;
+      color: #ad1457;
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    .foto {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 8px solid #f48fb1;
+      box-shadow: 0 0 25px rgba(216, 27, 96, 0.4);
+      margin-bottom: 25px;
+      user-select: none;
+    }
+
+    .detalle {
+      font-size: 1.25rem;
+      color: #6a1b9a;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      user-select: none;
+    }
+
+    .extra {
+      background-color: #fce4ec;
+      border-radius: 15px;
+      padding: 18px 25px;
+      font-size: 1.15rem;
+      color: #880e4f;
+      margin-bottom: 30px;
+      box-shadow: 0 6px 15px rgba(220, 105, 180, 0.3);
+      user-select: none;
+    }
+
+    .countdown {
+      font-size: 1.4rem;
+      color: #ad1457;
+      font-weight: 700;
+      margin-bottom: 30px;
+      user-select: none;
+    }
+
+    /* Galería mejor acomodada */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+      user-select: none;
+      justify-items: center;
+    }
+
+    .galeria img {
+      width: 150px;
+      height: 150px;
+      border-radius: 18px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(173, 20, 87, 0.3);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      font-size: 1rem;
+      color: #ad1457;
+      font-weight: 600;
+      user-select: none;
+      margin-top: 20px;
+    }
+
+    /* Juego Encuentra a Stitch */
+
+    .game-section {
+      background: #fce4ec;
+      border-radius: 20px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 25px rgba(220, 105, 180, 0.3);
+      max-width: 480px;
+      margin: 0 auto 40px;
+    }
+
+    .game-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      color: #d81b60;
+      margin-bottom: 10px;
+      user-select: none;
+    }
+
+    .game-instructions {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #880e4f;
+      user-select: none;
+    }
+
+    .game-grid {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 15px;
+      justify-content: center;
+      user-select: none;
+    }
+
+    .game-grid.level-1 {
+      grid-template-columns: repeat(5, 50px);
+    }
+
+    .game-grid.level-2 {
+      grid-template-columns: repeat(7, 45px);
+    }
+
+    .game-grid button {
+      font-size: 1.5rem;
+      background: #f8bbd0;
+      border: 2px solid #d81b60;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.15s;
+      user-select: none;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+
+    .game-grid.level-2 button {
+      width: 45px;
+      height: 45px;
+    }
+
+    .game-grid button:hover:not(:disabled) {
+      background-color: #f48fb1;
+      transform: scale(1.15);
+    }
+
+    .game-grid button.correct {
+      background-color: #81c784;
+      border-color: #388e3c;
+      color: #1b5e20;
+      cursor: default;
+      transform: scale(1.2);
+    }
+
+    .game-grid button.wrong {
+      background-color: #e57373;
+      border-color: #c62828;
+      color: #b71c1c;
+      cursor: default;
+      opacity: 0.7;
+    }
+
+    .game-result {
+      font-size: 1.2rem;
+      color: #6a1b9a;
+      min-height: 30px;
+      user-select: none;
+    }
+
+    .game-info {
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #ad1457;
+      user-select: none;
+    }
+
+    .btn-restart {
+      background-color: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 28px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(216, 27, 96, 0.7);
+      transition: background-color 0.3s ease, transform 0.2s;
+      user-select: none;
+    }
+
+    .btn-restart:hover {
+      background-color: #ad1457;
+      transform: scale(1.05);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <h1>¡Cumple de Ángela!</h1>
+    <h2>¡Sarai cumple 8 años! 🎉</h2>
+
+    <img
+      src="sarai.jpg"
+      alt="Foto de Ángela Sarai"
+      class="foto"
+      aria-describedby="detalle-fiesta"
+      draggable="false"
+    />
+
+    <p class="detalle" id="detalle-fiesta">
+      Estás invitado a una fiesta súper especial con temática de Stitch 🥳💙<br />
+      <strong>🕔 Hora:</strong> 5:00 PM<br />
+      <strong>📍 Lugar:</strong> Calle Fresnos Mz 50 Lt 36,<br />
+      Fraccionamiento Floresta, Los Reyes La Paz.
+    </p>
+
+    <div class="extra" aria-live="polite">
+      🎁 No olvides traer tu mejor energía y ganas de celebrar.<br />
+      ¡Nos encantará verte ahí! 💕
+    </div>
+
+    <div class="countdown" id="countdown" aria-live="polite" aria-atomic="true"></div>
+
+    <div class="galeria" aria-label="Galería de fotos">
+      <img
+        src="1.jpg"
+        alt="Foto 1 de Ángela"
+        draggable="false"
+      />
+      <img
+        src="2.png"
+        alt="Foto 2 de Ángela"
+        draggable="false"
+      />
+      <img
+        src="3.jpg"
+        alt="Foto 3 de Ángela"
+        draggable="false"
+      />
+      <img
+        src="4.jpg"
+        alt="Foto 4 de Ángela"
+        draggable="false"
+      />
+      <img
+        src="5.jpg"
+        alt="Foto 5 de Ángela"
+        draggable="false"
+      />
+    </div>
+
+    <!-- Juego Encuentra a Stitch -->
+    <section
+      class="game-section"
+      aria-label="Juego Encuentra a Stitch"
+      role="region"
+      tabindex="0"
+    >
+      <h3 class="game-title">¡Encuentra a Stitch!</h3>
+      <p class="game-instructions">Haz clic en el Stitch para ganar el juego.</p>
+
+      <div
+        class="game-grid level-1"
+        id="gameGrid"
+        role="list"
+        aria-live="polite"
+        aria-atomic="true"
+      ></div>
+
+      <div class="game-info" id="gameInfo" aria-live="polite" aria-atomic="true"></div>
+      <div class="game-result" id="gameResult" aria-live="polite" aria-atomic="true"></div>
+
+      <button class="btn-restart" id="btnRestart" aria-label="Reiniciar juego">
+        Reiniciar Juego
+      </button>
+    </section>
+
+    <footer>Con cariño, Ángela Sarai ✨</footer>
+  </div>
+
+  <audio autoplay loop hidden>
+    <source src="https://www.bensound.com/bensound-music/bensound-smile.mp3" type="audio/mp3" />
+  </audio>
+
+  <script>
+    // Cuenta regresiva para el día de la fiesta
+    function startCountdown() {
+      const countdownEl = document.getElementById('countdown');
+      const eventDate = new Date('2025-06-28T17:00:00');
+
+      function updateCountdown() {
+        const now = new Date();
+        const diff = eventDate - now;
+
+        if (diff <= 0) {
+          countdownEl.textContent = '¡La fiesta está en marcha! 🎉';
+          clearInterval(interval);
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        countdownEl.textContent = `Faltan ${days} días, ${hours} h, ${minutes} min y ${seconds} seg para la fiesta 🎂`;
+      }
+
+      updateCountdown();
+      const interval = setInterval(updateCountdown, 1000);
+    }
+
+    startCountdown();
+
+    // Juego Encuentra a Stitch con 2 niveles
+
+    const gameGrid = document.getElementById('gameGrid');
+    const gameInfo = document.getElementById('gameInfo');
+    const gameResult = document.getElementById('gameResult');
+    const btnRestart = document.getElementById('btnRestart');
+
+    // Niveles configurados con tamaño y número de Stitch
+    const levels = [
+      { size: 5, stitchCount: 1 },
+      { size: 7, stitchCount: 3 },
+    ];
+
+    let currentLevel = 0;
+    let foundStitch = 0;
+    let totalStitch = 0;
+
+    // Emoji para Stitch
+    const stitchEmoji = '🐾';
+
+    // Crea la cuadrícula de botones y coloca Stitch
+    function createGrid(level) {
+      const { size, stitchCount } = levels[level];
+      totalStitch = stitchCount;
+      foundStitch = 0;
+
+      // Cambiar clase para grid y tamaño de botones
+      gameGrid.className = 'game-grid level-' + (size === 5 ? '1' : '2');
+
+      // Limpiar grid y mensajes
+      gameGrid.innerHTML = '';
+      gameInfo.textContent = `Nivel ${level + 1}: Encuentra ${stitchCount} Stitch(es)`;
+      gameResult.textContent = '';
+
+      // Crear array para colocar Stitch sin repetir
+      let positions = [];
+      while (positions.length < stitchCount) {
+        const pos = Math.floor(Math.random() * (size * size));
+        if (!positions.includes(pos)) positions.push(pos);
+      }
+
+      for (let i = 0; i < size * size; i++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('aria-label', 'Casilla ' + (i + 1));
+        btn.dataset.stitch = positions.includes(i) ? 'true' : 'false';
+
+        btn.addEventListener('click', () => {
+          if (btn.disabled) return;
+          if (btn.dataset.stitch === 'true') {
+            btn.textContent = stitchEmoji;
+            btn.classList.add('correct');
+            foundStitch++;
+            if (foundStitch === totalStitch) {
+              if (currentLevel < levels.length - 1) {
+                gameResult.textContent = '¡Nivel completado! Preparando siguiente nivel...';
+                setTimeout(() => {
+                  currentLevel++;
+                  createGrid(currentLevel);
+                }, 1500);
+              } else {
+                gameResult.textContent = '¡Felicidades! ¡Has encontrado todos los Stitch! 🎉';
+              }
+            }
+          } else {
+            btn.textContent = '❌';
+            btn.classList.add('wrong');
+          }
+          btn.disabled = true;
+        });
+
+        gameGrid.appendChild(btn);
+      }
+    }
+
+    btnRestart.addEventListener('click', () => {
+      currentLevel = 0;
+      createGrid(currentLevel);
+      gameResult.textContent = '';
+    });
+
+    createGrid(currentLevel);
+  </script>
+</body>
+</html>
