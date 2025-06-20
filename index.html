@@ -12,52 +12,63 @@
       background: linear-gradient(to bottom right, #b2ebf2, #f8bbd0);
       color: #333;
       text-align: center;
+      overflow-x: hidden;
     }
 
-    /* Pantalla de inicio */
-    #pantalla-inicio {
+    .pantalla-inicial {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       height: 100%;
       background: linear-gradient(to bottom right, #81d4fa, #f8bbd0);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       z-index: 1000;
-      transition: opacity 1s ease;
+      animation: aparecer 1.5s ease forwards;
     }
 
-    #pantalla-inicio h1 {
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .pantalla-inicial h1 {
       font-family: 'Pacifico', cursive;
-      font-size: 3em;
-      color: #1565c0;
-      margin-bottom: 30px;
+      color: #fff;
+      font-size: 2.8em;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+      margin-bottom: 20px;
     }
 
-    #btn-entrar {
-      padding: 15px 40px;
-      font-size: 1.2em;
-      border: none;
-      border-radius: 50px;
-      background-color: #1976d2;
+    .stitch-img {
+      width: 180px;
+      animation: flotar 4s ease-in-out infinite;
+      margin-bottom: 25px;
+    }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .boton-entrar {
+      background: #1976d2;
       color: white;
+      border: none;
+      padding: 14px 34px;
+      font-size: 1.3em;
+      border-radius: 50px;
       cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
       font-family: 'Quicksand', sans-serif;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s, background 0.3s;
     }
 
-    #btn-entrar:hover {
-      background-color: #0d47a1;
-      transform: scale(1.05);
-    }
-
-    #contenido {
-      opacity: 0;
-      transition: opacity 1s ease;
+    .boton-entrar:hover {
+      background: #1565c0;
+      transform: scale(1.07);
     }
 
     .container {
@@ -67,6 +78,12 @@
       background: #ffffffee;
       border-radius: 25px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .visible {
+      opacity: 1;
     }
 
     h1 {
@@ -158,7 +175,6 @@
       color: #888;
     }
 
-    /* Juego de globos */
     #juego-globos {
       position: relative;
       height: 300px;
@@ -177,74 +193,70 @@
 </head>
 <body>
 
-  <!-- Pantalla de inicio con botón -->
-  <div id="pantalla-inicio">
-    <h1>¡Hola! 🎈</h1>
-    <button id="btn-entrar">Entrar a la fiesta 🎉</button>
+  <!-- PANTALLA DE INICIO -->
+  <div class="pantalla-inicial" id="pantalla-inicial">
+    <img src="11.jpg" alt="Stitch" class="stitch-img" />
+    <h1>¡Estás invitado al cumple de Ángela! 🎉</h1>
+    <button class="boton-entrar" onclick="entrarFiesta()">Entrar</button>
   </div>
 
-  <div id="contenido">
-    <div class="container">
-      <h1>¡Cumple de Ángela!</h1>
-      <h2>¡Sarai cumple 8 años! 🎉</h2>
+  <!-- CONTENIDO -->
+  <div class="container" id="contenido">
+    <h1>¡Cumple de Ángela!</h1>
+    <h2>¡Sarai cumple 8 años! 🎉</h2>
 
-      <img src="sara.jpg" alt="Foto de Angela" class="foto" />
+    <img src="sara.jpg" alt="Foto de Ángela" class="foto" />
 
-      <p class="detalle">
-        Estás invitado a una fiesta súper especial🥳💙<br>
-        <strong>🕔 Hora:</strong> 5:00 PM<br>
-        <strong>📍 Lugar:</strong> Calle Fresnos Mz 50 Lt 36,<br> Fraccionamiento Floresta, Los Reyes La Paz.
-      </p>
+    <p class="detalle">
+      Estás invitado a una fiesta súper especial con temática de Stitch 🥳💙<br>
+      <strong>🕔 Hora:</strong> 5:00 PM<br>
+      <strong>📍 Lugar:</strong> Calle Fresnos Mz 50 Lt 36,<br> Fraccionamiento Floresta, Los Reyes La Paz.
+    </p>
+     <img src="1.jpg" alt="Stitch 1" />
 
-     
+   
 
-      <div class="extra">
-        🎁 No olvides traer tu mejor energía y ganas de celebrar.<br>
-        ¡Nos encantará verte ahí! 💕
-      </div>
-
-      <div class="countdown" id="countdown"></div>
-
-      <div class="galeria">
-        <img src="1.jpg" alt="Stitch 1" />
-        <img src="2.png" alt="Stitch 2" />
-        <img src="3.jpg" alt="Stitch 3" />
-        <img src="4.jpg" alt="Stitch 4" />
-      </div>
-
-      <div class="extra">
-        <h3>🎈 ¡Juega con los globos! 🎈</h3>
-        <p>Haz clic en los globos para reventarlos 🫧</p>
-        <div id="juego-globos"></div>
-        <div class="contador-globos">Globos explotados: <span id="contador">0</span></div>
-      </div>
-
-      <footer>Con cariño, Ángela Sarai ✨</footer>
+    <div class="extra">
+      🎁 No olvides traer tu mejor energía y ganas de celebrar.<br>
+      ¡Nos encantará verte ahí! 💕
     </div>
+
+    <div class="countdown" id="countdown"></div>
+
+    <div class="galeria">
+     
+      <img src="3.jpg" alt="Stitch 3" />
+      <img src="4.jpg" alt="Stitch 4" />
+    </div>
+
+    <div class="extra">
+      <h3>🎈 ¡Juega con los globos! 🎈</h3>
+      <p>Haz clic en los globos para reventarlos 🫧</p>
+      <div id="juego-globos"></div>
+      <div class="contador-globos">Globos explotados: <span id="contador">0</span></div>
+    </div>
+
+    <footer>Con cariño, Ángela Sarai ✨</footer>
   </div>
 
-  <!-- Música de fondo -->
-  <audio id="musica" autoplay loop hidden>
-    <source src="https://www.bensound.com/bensound-music/bensound-smile.mp3" type="audio/mp3">
-  </audio>
+  <!-- MÚSICA DE FONDO -->
+  <audio id="musica-fondo" src="musica.mp3" type="audio/mp3" loop></audio>
 
-  <!-- Sonido pop -->
+  <!-- SONIDO DE GLOBO -->
   <audio id="pop-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-small-pop-archive-2322.mp3" preload="auto"></audio>
 
-  <!-- Scripts -->
+  <!-- SCRIPT -->
   <script>
-    // Pantalla de entrada
-    const btnEntrar = document.getElementById("btn-entrar");
-    const pantalla = document.getElementById("pantalla-inicio");
-    const contenido = document.getElementById("contenido");
+    function entrarFiesta() {
+      document.getElementById('pantalla-inicial').style.display = 'none';
+      const contenido = document.getElementById('contenido');
+      contenido.classList.add('visible');
 
-    btnEntrar.addEventListener("click", () => {
-      pantalla.style.opacity = 0;
-      setTimeout(() => {
-        pantalla.style.display = "none";
-        contenido.style.opacity = 1;
-      }, 1000);
-    });
+      const musica = document.getElementById('musica-fondo');
+      musica.play().catch(() => {
+        alert("Haz tocado el botón, pero el navegador bloqueó el audio. Intenta tocar otra vez.");
+      });
+    }
 
     // Cuenta regresiva
     const evento = new Date("2025-06-28T17:00:00").getTime();
@@ -315,6 +327,9 @@
     }
 
     setInterval(crearGlobo, 1000);
+           
+
   </script>
+
 </body>
 </html>
