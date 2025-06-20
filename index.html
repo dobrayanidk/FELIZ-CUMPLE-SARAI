@@ -328,7 +328,15 @@
 
     setInterval(crearGlobo, 1000);
            
-
+// Pausar música cuando el usuario cambia de pestaña
+document.addEventListener("visibilitychange", function () {
+  const musica = document.getElementById('musica-fondo');
+  if (document.hidden) {
+    musica.pause();
+  } else {
+    musica.play().catch(() => {});
+  }
+});
   </script>
 
 </body>
